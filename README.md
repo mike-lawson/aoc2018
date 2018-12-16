@@ -3,8 +3,11 @@
 Happy holidays! I'm using AOC 2018 to learn Go.
 
 ## Usage
-```go run main.go <day>```
+```
+go run main.go <day>
+```
 Or
-```go build .
+```
+go build .
 ./aoc2018 <day>
 ```
