@@ -56,9 +56,6 @@ func Second(input string) string {
 	var comparisons []Comparison
 	for i := range values {
 		for j := i + 1; j < len(values); j++ {
-			if j == 0 {
-				fmt.Println("wut")
-			}
 			comparison := Comparison{
 				i, j, levenshtein.ComputeDistance(values[i], values[j]),
 			}
