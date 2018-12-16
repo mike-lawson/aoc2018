@@ -7,6 +7,7 @@ import (
 
 	"github.com/mike-lawson/aoc2018/problems/day01"
 	"github.com/mike-lawson/aoc2018/problems/day02"
+	"github.com/mike-lawson/aoc2018/problems/day03"
 )
 
 var days = make(map[int]Exercise)
@@ -22,6 +23,10 @@ func init() {
 	days[2] = Exercise([]Part{
 		func(input string) interface{} { return day02.First(input) },
 		func(input string) interface{} { return day02.Second(input) },
+	})
+	days[3] = Exercise([]Part{
+		func(input string) interface{} { return day03.First(input) },
+		func(input string) interface{} { return day03.Second(input) },
 	})
 }
 
@@ -40,7 +45,7 @@ func Run(day int) error {
 	fmt.Printf("Day %d\n", day)
 
 	for part, fn := range exercise {
-		fmt.Printf("Part %v: %v\n", part, fn(string(bytes)))
+		fmt.Printf("Part %v: %v\n", part+1, fn(string(bytes)))
 	}
 
 	return nil
