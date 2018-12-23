@@ -18,7 +18,6 @@ type Claim struct {
 type Grid [][]int
 
 func (g Grid) String() string {
-	fmt.Println("In grid String()")
 	var sb strings.Builder
 	for x := 0; x < len(g); x++ {
 		for y := 0; y < len(g[x]); y++ {

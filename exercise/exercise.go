@@ -8,6 +8,8 @@ import (
 	"github.com/mike-lawson/aoc2018/problems/day01"
 	"github.com/mike-lawson/aoc2018/problems/day02"
 	"github.com/mike-lawson/aoc2018/problems/day03"
+	"github.com/mike-lawson/aoc2018/problems/day04"
+	"github.com/mike-lawson/aoc2018/problems/day05"
 )
 
 var days = make(map[int]Exercise)
@@ -27,6 +29,14 @@ func init() {
 	days[3] = Exercise([]Part{
 		func(input string) interface{} { return day03.First(input) },
 		func(input string) interface{} { return day03.Second(input) },
+	})
+	days[4] = Exercise([]Part{
+		func(input string) interface{} { return day04.First(input) },
+		func(input string) interface{} { return day04.Second(input) },
+	})
+	days[5] = Exercise([]Part{
+		func(input string) interface{} { return day05.First(input) },
+		func(input string) interface{} { return day05.Second(input) },
 	})
 }
 
