@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"time"
 
 	"github.com/mike-lawson/aoc2018/problems/day01"
 	"github.com/mike-lawson/aoc2018/problems/day02"
@@ -55,7 +56,8 @@ func Run(day int) error {
 	fmt.Printf("Day %d\n", day)
 
 	for part, fn := range exercise {
-		fmt.Printf("Part %v: %v\n", part+1, fn(string(bytes)))
+		start := time.Now()
+		fmt.Printf("Part %v: %v (took %s)\n", part+1, fn(string(bytes)), time.Since(start))
 	}
 
 	return nil

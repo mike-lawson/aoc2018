@@ -2,6 +2,7 @@ package day05
 
 import (
 	"math"
+	"regexp"
 	"strings"
 )
 
@@ -13,16 +14,19 @@ func First(input string) int {
 
 func Second(input string) int32 {
 	input = strings.Split(input, "\n")[0]
-	var charmap = make(map[rune]int32)
+	out := make(chan int32)
+	process := func(out chan int32, c rune) {
+		charInput := regexp.MustCompile("(?i)"+string(c)).ReplaceAllString(input, "")
+		out <- int32(len(Reduce(charInput)))
+	}
 	for c := 'a'; c <= 'z'; c++ {
-		charInput := strings.Replace(input, string(c), "", -1)
-		charInput = strings.Replace(charInput, string(c-32), "", -1)
-		charmap[c] = int32(len(Reduce(charInput)))
+		go process(out, c)
 	}
 	var min int32 = math.MaxInt32
-	for _, v := range charmap {
-		if int32(v) < min {
-			min = int32(v)
+	for i := 0; i < 26; i++ {
+		result := <-out
+		if result < min {
+			min = result
 		}
 	}
 	return min
