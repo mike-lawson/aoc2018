@@ -8,23 +8,19 @@ import (
 
 func First(input string) int {
 	// Strip out the last new line
-	input = Reduce(strings.Split(input, "\n")[0])
+	input = React(strings.Split(input, "\n")[0])
 	return len(input)
 }
 
 func Second(input string) int32 {
 	input = strings.Split(input, "\n")[0]
-	out := make(chan int32)
-	process := func(out chan int32, c rune) {
-		charInput := regexp.MustCompile("(?i)"+string(c)).ReplaceAllString(input, "")
-		out <- int32(len(Reduce(charInput)))
-	}
-	for c := 'a'; c <= 'z'; c++ {
-		go process(out, c)
+	results := make([]int32, 26)
+	for c := 0; c < 26; c++ {
+		charInput := regexp.MustCompile("(?i)"+string(c+'a')).ReplaceAllString(input, "")
+		results[c] = int32(len(React(charInput)))
 	}
 	var min int32 = math.MaxInt32
-	for i := 0; i < 26; i++ {
-		result := <-out
+	for _, result := range results {
 		if result < min {
 			min = result
 		}
